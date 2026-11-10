@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeeLuxe & Beauty – Hair Accessories</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="her.css" />
+</head>
+<body>
+
+    <!-- ===== TOP BANNER ===== -->
+    <div class="top-banner">
+        <div class="marquee">
+            <span><i class="fas fa-truck"></i> Free shipping on orders above ₦25,000</span>
+            <span><i class="fas fa-gem"></i> Authentic hair accessories — 100% guaranteed</span>
+            <span><i class="fas fa-star"></i> Join 2,000+ happy customers</span>
+            <span><i class="fas fa-truck"></i> Free shipping on orders above ₦25,000</span>
+            <span><i class="fas fa-gem"></i> Authentic hair accessories — 100% guaranteed</span>
+            <span><i class="fas fa-star"></i> Join 2,000+ happy customers</span>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-inner">
+            <a class="logo" onclick="navigateTo('home')"><i class="fas fa-spa"></i>BeeLuxe <span>&amp; Beauty</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a class="active" data-page="home" onclick="navigateTo('home')">Home</a></li>
+                <li><a data-page="shop" onclick="navigateTo('shop')">Shop</a></li>
+                <li><a data-page="contact" onclick="navigateTo('contact')">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                <button class="icon-btn" aria-label="Cart" onclick="showToast('🛒 Your cart is empty')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+
+                <!-- Dark mode toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-ball"><i class="fas fa-moon"></i></span>
+                </button>
+
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ============================================================ -->
+        <!-- ===== PAGE: HOME ===== -->
+        <!-- ============================================================ -->
+        <div class="page active" id="page-home">
+
+            <!-- HERO SLIDER -->
+            <section class="hero" id="hero">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="hero-slide">
+                        <div class="content">
+                            <h1><i class="fas fa-crown"></i> Elevate your crown</h1>
+                            <p>From sleek clips to bold headwraps — find the perfect accent for every style.</p>
+                            <a class="btn" onclick="navigateTo('shop')">Shop now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="image">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <div class="content">
+                            <h1><i class="fas fa-braces"></i> Braid &amp; shine</h1>
+                            <p>Accessories that protect, define, and celebrate your natural texture.</p>
+                            <a class="btn" onclick="navigateTo('shop')">Explore <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="image">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <div class="content">
+                            <h1><i class="fas fa-feather"></i> Light as air</h1>
+                            <p>Comfortable, durable, and made for all-day wear — your hair deserves the best.</p>
+                            <a class="btn" onclick="navigateTo('shop')">Discover <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="image">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-dots" id="heroDots">
+                    <button class="active" data-index="0"></button>
+                    <button data-index="1"></button>
+                    <button data-index="2"></button>
+                </div>
+            </section>
+
+            <!-- CATEGORIES -->
+            <section class="categories" id="categories">
+                <h2 class="section-title fade-up"><i class="fas fa-th-large"></i> Shop by category</h2>
+                <div class="category-grid">
+                    <div class="category-card fade-up" onclick="filterShop('clips')"><i class="fas fa-paperclip"></i><h4>Clips &amp; pins</h4></div>
+                    <div class="category-card fade-up" onclick="filterShop('wraps')"><i class="fas fa-ribbon"></i><h4>Headwraps &amp; scarves</h4></div>
+                    <div class="category-card fade-up" onclick="filterShop('jewelry')"><i class="fas fa-gem"></i><h4>Jewelry accessories</h4></div>
+                    <div class="category-card fade-up" onclick="filterShop('brushes')"><i class="fas fa-brush"></i><h4>Brushes &amp; combs</h4></div>
+                    <div class="category-card fade-up" onclick="filterShop('oils')"><i class="fas fa-tint"></i><h4>Hair oils &amp; serums</h4></div>
+                    <div class="category-card fade-up" onclick="filterShop('sets')"><i class="fas fa-star"></i><h4>Bundles &amp; sets</h4></div>
+                </div>
+            </section>
+
+            <!-- PRODUCTS (home preview) -->
+            <section class="products" id="products-home">
+                <h2 class="section-title fade-up"><i class="fas fa-store"></i> Bestsellers</h2>
+                <div class="product-grid" id="homeProductGrid">
+                    <!-- filled by JS -->
+                </div>
+            </section>
+
+            <!-- TESTIMONIALS -->
+            <section class="testimonials" id="testimonials">
+                <div class="container">
+                    <h2 class="section-title fade-up"><i class="fas fa-comment-dots"></i> What our customers say</h2>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card fade-up">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“The silk headwrap is a game changer — so soft and stays put all day. I’ve bought three!”</p>
+                            <div class="name">— Amina K.</div>
+                        </div>
+                        <div class="testimonial-card fade-up">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“Finally found hair pins that don’t snag. BeeLuxe &amp; Beauty is my new go-to.”</p>
+                            <div class="name">— Chioma O.</div>
+                        </div>
+                        <div class="testimonial-card fade-up">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“The argan oil serum brought my dry ends back to life. Absolutely love it.”</p>
+                            <div class="name">— Zara M.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURES -->
+            <div class="features">
+                <div class="feature-item fade-up"><i class="fas fa-truck"></i><h5>Fast delivery</h5><p>Nationwide shipping in 2–4 days</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-lock"></i><h5>Secure payment</h5><p>Pay with ease &amp; confidence</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-medal"></i><h5>Trusted quality</h5><p>Curated accessories you can rely on</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-headset"></i><h5>Customer support</h5><p>We’re here to help, always</p></div>
+            </div>
+
+        </div><!-- /page-home -->
+
+        <!-- ============================================================ -->
+        <!-- ===== PAGE: SHOP ===== -->
+        <!-- ============================================================ -->
+        <div class="page" id="page-shop">
+
+            <section class="products" style="margin-top:32px;">
+                <h2 class="section-title fade-up"><i class="fas fa-store-alt"></i> All Accessories</h2>
+
+                <!-- Toolbar -->
+                <div class="shop-toolbar fade-up">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all" onclick="filterShop('all')">All</button>
+                        <button class="filter-btn" data-filter="clips" onclick="filterShop('clips')">Clips</button>
+                        <button class="filter-btn" data-filter="wraps" onclick="filterShop('wraps')">Wraps</button>
+                        <button class="filter-btn" data-filter="jewelry" onclick="filterShop('jewelry')">Jewelry</button>
+                        <button class="filter-btn" data-filter="brushes" onclick="filterShop('brushes')">Brushes</button>
+                        <button class="filter-btn" data-filter="oils" onclick="filterShop('oils')">Oils</button>
+                        <button class="filter-btn" data-filter="sets" onclick="filterShop('sets')">Sets</button>
+                    </div>
+                    <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+                        <option value="default">Sort by: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+
+                <div class="product-grid" id="shopProductGrid">
+                    <!-- filled by JS -->
+                </div>
+            </section>
+
+            <!-- Features (shared) -->
+            <div class="features">
+                <div class="feature-item fade-up"><i class="fas fa-truck"></i><h5>Fast delivery</h5><p>Nationwide shipping in 2–4 days</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-lock"></i><h5>Secure payment</h5><p>Pay with ease &amp; confidence</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-medal"></i><h5>Trusted quality</h5><p>Curated accessories you can rely on</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-headset"></i><h5>Customer support</h5><p>We’re here to help, always</p></div>
+            </div>
+
+        </div><!-- /page-shop -->
+
+        <!-- ============================================================ -->
+        <!-- ===== PAGE: CONTACT ===== -->
+        <!-- ============================================================ -->
+        <div class="page" id="page-contact">
+
+            <div class="contact-wrap" style="margin-top:32px;">
+                <!-- Contact Info -->
+                <div class="contact-info fade-up">
+                    <h3><i class="fas fa-paper-plane" style="color:var(--accent);"></i> Get in touch</h3>
+                    <p>We'd love to hear from you! Reach out with any questions, feedback, or custom orders.</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div><div class="label">Visit us</div><div class="value">23 Balogun Street, Lagos Island, Lagos, Nigeria</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div><div class="label">Call us</div><div class="value">+234 800 123 4567</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div><div class="label">Email us</div><div class="value">hello@beeluxe.com</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div><div class="label">Working hours</div><div class="value">Mon – Sat: 9:00 AM – 7:00 PM (WAT)</div></div>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:16px; font-size:1.6rem; color:var(--accent);">
+                        <i class="fab fa-instagram" style="cursor:pointer;"></i>
+                        <i class="fab fa-facebook" style="cursor:pointer;"></i>
+                        <i class="fab fa-youtube" style="cursor:pointer;"></i>
+                        <i class="fab fa-tiktok" style="cursor:pointer;"></i>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form fade-up">
+                    <h3>Send a message</h3>
+                    <p class="sub">We'll get back to you within 24 hours.</p>
+                    <form id="contactForm" onsubmit="handleContactForm(event)">
+                        <label for="contactName">Full name</label>
+                        <input type="text" id="contactName" placeholder="Your full name" required />
+
+                        <label for="contactEmail">Email address</label>
+                        <input type="email" id="contactEmail" placeholder="you@example.com" required />
+
+                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="contactSubject" placeholder="What's this about?" />
+
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" placeholder="Tell us how we can help..." required></textarea>
+
+                        <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send message</button>
+                        <div class="form-success" id="formSuccess">
+                            <i class="fas fa-check-circle"></i> Thank you! Your message has been sent. We'll reply soon.
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Features (shared) -->
+            <div class="features">
+                <div class="feature-item fade-up"><i class="fas fa-truck"></i><h5>Fast delivery</h5><p>Nationwide shipping in 2–4 days</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-lock"></i><h5>Secure payment</h5><p>Pay with ease &amp; confidence</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-medal"></i><h5>Trusted quality</h5><p>Curated accessories you can rely on</p></div>
+                <div class="feature-item fade-up"><i class="fas fa-headset"></i><h5>Customer support</h5><p>We’re here to help, always</p></div>
+            </div>
+
+        </div><!-- /page-contact -->
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4><i class="fas fa-spa" style="color:var(--accent);"></i> BeeLuxe &amp; Beauty</h4>
+                    <ul>
+                        <li><i class="fas fa-map-pin"></i> Lagos, Nigeria</li>
+                        <li><i class="fas fa-envelope"></i> hello@beeluxe.com</li>
+                        <li><i class="fas fa-phone"></i> +234 800 123 4567</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Quick links</h4>
+                    <ul>
+                        <li><a onclick="navigateTo('home')">Home</a></li>
+                        <li><a onclick="navigateTo('shop')">Shop all</a></li>
+                        <li><a onclick="navigateTo('contact')">Contact</a></li>
+                        <li><a href="#">Offers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Shipping info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Follow us</h4>
+                    <ul>
+                        <li><i class="fab fa-instagram"></i> Instagram</li>
+                        <li><i class="fab fa-facebook"></i> Facebook</li>
+                        <li><i class="fab fa-youtube"></i> YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 BeeLuxe &amp; Beauty. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Added to cart</span></div>
+
+    <!-- External JavaScript -->
+    <script src="her.js"></script>
+</body>
+</html>

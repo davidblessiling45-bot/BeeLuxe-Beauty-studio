@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeeLuxe & Beauty – Hair Accessories</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ----- CSS Variables (Light & Dark) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fcf9f7;
+            --bg-secondary: #ffffff;
+            --text: #1e1e1e;
+            --text-muted: #4a4a4a;
+            --accent: #b45f4b;
+            --accent-light: #d48c7a;
+            --accent-dark: #8e3e2b;
+            --border: #e8e0db;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --card-bg: #ffffff;
+            --hero-overlay: rgba(0, 0, 0, 0.25);
+            --transition: 0.35s ease;
+            --radius: 18px;
+            --font: 'Inter', sans-serif;
+            --banner-bg: #2d1c15;
+            --banner-text: #f5ede8;
+        }
+
+        [data-theme="dark"] {
+            --bg: #161616;
+            --bg-secondary: #1f1f1f;
+            --text: #f0ece9;
+            --text-muted: #b0aaa5;
+            --accent: #d48c7a;
+            --accent-light: #e6b09e;
+            --accent-dark: #b45f4b;
+            --border: #333333;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            --card-bg: #262626;
+            --hero-overlay: rgba(0, 0, 0, 0.5);
+            --banner-bg: #0f0a08;
+            --banner-text: #e8ddd6;
+        }
+
+        /* ----- Reset & Base ----- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            transition: background var(--transition), color var(--transition);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ----- Top Banner ----- */
+        .top-banner {
+            background: var(--banner-bg);
+            color: var(--banner-text);
+            font-size: 0.85rem;
+            padding: 10px 0;
+            text-align: center;
+            letter-spacing: 0.3px;
+            transition: background var(--transition), color var(--transition);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .top-banner .marquee {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .top-banner span {
+            margin: 0 40px;
+        }
+        .top-banner i {
+            margin-right: 8px;
+            color: var(--accent-light);
+        }
+
+        /* ----- Header / Nav ----- */
+        header {
+            background: var(--bg-secondary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            transition: background var(--transition), box-shadow var(--transition);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+            transition: color var(--transition);
+        }
+        .logo i {
+            margin-right: 6px;
+            color: var(--accent-light);
+        }
+        .logo span {
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-links a {
+            transition: color var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header-actions .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: color var(--transition), transform 0.2s;
+            padding: 6px;
+        }
+        .header-actions .icon-btn:hover {
+            color: var(--accent);
+            transform: scale(1.08);
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: var(--border);
+            border: none;
+            border-radius: 40px;
+            width: 52px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            cursor: pointer;
+            transition: background var(--transition);
+            position: relative;
+        }
+        .theme-toggle .toggle-ball {
+            width: 22px;
+            height: 22px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            transition: transform var(--transition), background var(--transition);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        .theme-toggle.dark .toggle-ball {
+            transform: translateX(24px);
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--text);
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        /* ----- Hero Slider ----- */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin: 24px 0 40px;
+            box-shadow: var(--shadow);
+            background: var(--bg-secondary);
+            transition: background var(--transition);
+        }
+        .hero-slider {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .hero-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 48px 56px;
+            background: linear-gradient(135deg, #f7eee9 0%, #efe4dd 100%);
+            color: #1e1e1e;
+            min-height: 380px;
+            transition: background var(--transition);
+        }
+        [data-theme="dark"] .hero-slide {
+            background: linear-gradient(135deg, #2a221e 0%, #1e1714 100%);
+            color: #f0ece9;
+        }
+        .hero-slide .content {
+            flex: 1 1 55%;
+        }
+        .hero-slide .content h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .hero-slide .content h1 i {
+            color: var(--accent);
+        }
+        .hero-slide .content p {
+            font-size: 1.1rem;
+            max-width: 440px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            transition: color var(--transition);
+        }
+        .hero-slide .content .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 38px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: background var(--transition), transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(180, 95, 75, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .hero-slide .content .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(180, 95, 75, 0.35);
+        }
+        .hero-slide .image {
+            flex: 1 1 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-slide .image i {
+            font-size: 9rem;
+            color: var(--accent-light);
+            opacity: 0.5;
+            transition: opacity var(--transition);
+        }
+        [data-theme="dark"] .hero-slide .image i {
+            opacity: 0.3;
+        }
+
+        /* slider dots */
+        .hero-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        .hero-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: 0.25s;
+            padding: 0;
+        }
+        .hero-dots button.active {
+            background: var(--accent);
+            transform: scale(1.25);
+            box-shadow: 0 0 0 4px rgba(180, 95, 75, 0.2);
+        }
+        .hero-dots button:hover {
+            background: var(--accent-light);
+        }
+
+        /* ----- Section Titles ----- */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        /* ----- Category Grid ----- */
+        .categories {
+            margin: 56px 0 48px;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 24px;
+        }
+        .category-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 28px 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s, background var(--transition);
+            border: 1px solid var(--border);
+            cursor: default;
+        }
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+        }
+        .category-card i {
+            font-size: 2.6rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .category-card h4 {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* ----- Product Grid ----- */
+        .products {
+            margin: 48px 0 56px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 28px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px 16px 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s, background var(--transition);
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.07);
+        }
+        .product-card .icon-wrap {
+            font-size: 3.2rem;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+        .product-card h4 {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .product-card .price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .product-card .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+        .product-card .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        /* ----- Testimonials ----- */
+        .testimonials {
+            margin: 56px 0 48px;
+            background: var(--bg-secondary);
+            padding: 48px 0;
+            border-radius: var(--radius);
+            transition: background var(--transition);
+            border: 1px solid var(--border);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+        }
+        .testimonial-card {
+            background: var(--bg);
+            padding: 24px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent);
+            transition: background var(--transition);
+        }
+        .testimonial-card i {
+            color: var(--accent-light);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .testimonial-card .name {
+            font-weight: 600;
+        }
+
+        /* ----- Features / Trust ----- */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+            margin: 48px 0 56px;
+            text-align: center;
+        }
+        .feature-item i {
+            font-size: 2.4rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .feature-item h5 {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ----- Footer ----- */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 0 24px;
+            margin-top: 32px;
+            transition: background var(--transition);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+        }
+        .footer-grid h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .footer-grid ul {
+            list-style: none;
+        }
+        .footer-grid ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .footer-grid ul li i {
+            margin-right: 8px;
+            color: var(--accent);
+            width: 20px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 28px;
+            margin-top: 28px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ----- Responsive ----- */
+        @media (max-width: 900px) {
+            .hero-slide {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 28px;
+                min-height: 320px;
+            }
+            .hero-slide .content p {
+                max-width: 100%;
+            }
+            .hero-slide .image i {
+                font-size: 5rem;
+                margin-top: 12px;
+            }
+            .hero-slide .content h1 {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--bg-secondary);
+                padding: 20px 0;
+                gap: 16px;
+                border-top: 1px solid var(--border);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .header-inner {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-slide .content h1 {
+                font-size: 1.8rem;
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .top-banner {
+                font-size: 0.7rem;
+                padding: 8px 0;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ----- Utility animations ----- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOP BANNER ===== -->
+    <div class="top-banner">
+        <div class="marquee">
+            <span><i class="fas fa-truck"></i> Free shipping on orders above ₦25,000</span>
+            <span><i class="fas fa-gem"></i> Authentic hair accessories — 100% guaranteed</span>
+            <span><i class="fas fa-star"></i> Join 2,000+ happy customers</span>
+            <span><i class="fas fa-truck"></i> Free shipping on orders above ₦25,000</span>
+            <span><i class="fas fa-gem"></i> Authentic hair accessories — 100% guaranteed</span>
+            <span><i class="fas fa-star"></i> Join 2,000+ happy customers</span>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo"><i class="fas fa-spa"></i>BeeLuxe <span>&amp; Beauty</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                <button class="icon-btn" aria-label="Cart"><i class="fas fa-shopping-bag"></i></button>
+
+                <!-- Dark mode toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-ball"><i class="fas fa-moon"></i></span>
+                </button>
+
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ===== HERO SLIDER ===== -->
+        <section class="hero" id="hero">
+            <div class="hero-slider" id="heroSlider">
+                <!-- Slide 1 -->
+                <div class="hero-slide">
+                    <div class="content">
+                        <h1><i class="fas fa-crown"></i> Elevate your crown</h1>
+                        <p>From sleek clips to bold headwraps — find the perfect accent for every style.</p>
+                        <a href="#products" class="btn">Shop now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="image">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="hero-slide">
+                    <div class="content">
+                        <h1><i class="fas fa-braces"></i> Braid &amp; shine</h1>
+                        <p>Accessories that protect, define, and celebrate your natural texture.</p>
+                        <a href="#products" class="btn">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="image">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="hero-slide">
+                    <div class="content">
+                        <h1><i class="fas fa-feather"></i> Light as air</h1>
+                        <p>Comfortable, durable, and made for all-day wear — your hair deserves the best.</p>
+                        <a href="#products" class="btn">Discover <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dots -->
+            <div class="hero-dots" id="heroDots">
+                <button class="active" data-index="0"></button>
+                <button data-index="1"></button>
+                <button data-index="2"></button>
+            </div>
+        </section>
+
+        <!-- ===== CATEGORIES ===== -->
+        <section class="categories" id="categories">
+            <h2 class="section-title fade-up"><i class="fas fa-th-large"></i> Shop by category</h2>
+            <div class="category-grid">
+                <div class="category-card fade-up"><i class="fas fa-paperclip"></i><h4>Clips &amp; pins</h4></div>
+                <div class="category-card fade-up"><i class="fas fa-ribbon"></i><h4>Headwraps &amp; scarves</h4></div>
+                <div class="category-card fade-up"><i class="fas fa-gem"></i><h4>Jewelry accessories</h4></div>
+                <div class="category-card fade-up"><i class="fas fa-brush"></i><h4>Brushes &amp; combs</h4></div>
+                <div class="category-card fade-up"><i class="fas fa-tint"></i><h4>Hair oils &amp; serums</h4></div>
+                <div class="category-card fade-up"><i class="fas fa-star"></i><h4>Bundles &amp; sets</h4></div>
+            </div>
+        </section>
+
+        <!-- ===== PRODUCTS ===== -->
+        <section class="products" id="products">
+            <h2 class="section-title fade-up"><i class="fas fa-store"></i> Bestsellers</h2>
+            <div class="product-grid">
+                <div class="product-card fade-up">
+                    <span class="badge">Hot</span>
+                    <div class="icon-wrap"><i class="fas fa-paperclip"></i></div>
+                    <h4>Luxe claw clip</h4>
+                    <div class="price">₦3,200 <span class="old-price">₦4,500</span></div>
+                </div>
+                <div class="product-card fade-up">
+                    <div class="icon-wrap"><i class="fas fa-ribbon"></i></div>
+                    <h4>Silk headwrap</h4>
+                    <div class="price">₦5,800</div>
+                </div>
+                <div class="product-card fade-up">
+                    <span class="badge">Sale</span>
+                    <div class="icon-wrap"><i class="fas fa-gem"></i></div>
+                    <h4>Pearl hair pins</h4>
+                    <div class="price">₦2,100 <span class="old-price">₦3,000</span></div>
+                </div>
+                <div class="product-card fade-up">
+                    <div class="icon-wrap"><i class="fas fa-brush"></i></div>
+                    <h4>Boar bristle brush</h4>
+                    <div class="price">₦4,400</div>
+                </div>
+                <div class="product-card fade-up">
+                    <div class="icon-wrap"><i class="fas fa-tint"></i></div>
+                    <h4>Argan oil serum</h4>
+                    <div class="price">₦6,200</div>
+                </div>
+                <div class="product-card fade-up">
+                    <span class="badge">New</span>
+                    <div class="icon-wrap"><i class="fas fa-star"></i></div>
+                    <h4>Starter accessory set</h4>
+                    <div class="price">₦9,900 <span class="old-price">₦12,500</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title fade-up"><i class="fas fa-comment-dots"></i> What our customers say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card fade-up">
+                        <i class="fas fa-quote-left"></i>
+                        <p>“The silk headwrap is a game changer — so soft and stays put all day. I’ve bought three!”</p>
+                        <div class="name">— Amina K.</div>
+                    </div>
+                    <div class="testimonial-card fade-up">
+                        <i class="fas fa-quote-left"></i>
+                        <p>“Finally found hair pins that don’t snag. BeeLuxe &amp; Beauty is my new go-to.”</p>
+                        <div class="name">— Chioma O.</div>
+                    </div>
+                    <div class="testimonial-card fade-up">
+                        <i class="fas fa-quote-left"></i>
+                        <p>“The argan oil serum brought my dry ends back to life. Absolutely love it.”</p>
+                        <div class="name">— Zara M.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES ===== -->
+        <div class="features">
+            <div class="feature-item fade-up"><i class="fas fa-truck"></i><h5>Fast delivery</h5><p>Nationwide shipping in 2–4 days</p></div>
+            <div class="feature-item fade-up"><i class="fas fa-lock"></i><h5>Secure payment</h5><p>Pay with ease &amp; confidence</p></div>
+            <div class="feature-item fade-up"><i class="fas fa-medal"></i><h5>Trusted quality</h5><p>Curated accessories you can rely on</p></div>
+            <div class="feature-item fade-up"><i class="fas fa-headset"></i><h5>Customer support</h5><p>We’re here to help, always</p></div>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4><i class="fas fa-spa" style="color:var(--accent);"></i> BeeLuxe &amp; Beauty</h4>
+                    <ul>
+                        <li><i class="fas fa-map-pin"></i> Lagos, Nigeria</li>
+                        <li><i class="fas fa-envelope"></i> hello@beeluxe.com</li>
+                        <li><i class="fas fa-phone"></i> +234 800 123 4567</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Quick links</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Shop all</a></li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">Shipping info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Follow us</h4>
+                    <ul>
+                        <li><i class="fab fa-instagram"></i> Instagram</li>
+                        <li><i class="fab fa-facebook"></i> Facebook</li>
+                        <li><i class="fab fa-youtube"></i> YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 BeeLuxe &amp; Beauty. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- HERO SLIDER -----
+            const slider = document.getElementById('heroSlider');
+            const dots = document.querySelectorAll('#heroDots button');
+            let currentIndex = 0;
+            let intervalId = null;
+
+            function goToSlide(index) {
+                if (index < 0) index = 0;
+                if (index >= dots.length) index = dots.length - 1;
+                currentIndex = index;
+                slider.style.transform = 'translateX(-' + (index * 100) + '%)';
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function nextSlide() {
+                goToSlide((currentIndex + 1) % dots.length);
+            }
+
+            function startSlider() {
+                if (intervalId) clearInterval(intervalId);
+                intervalId = setInterval(nextSlide, 5000);
+            }
+
+            function stopSlider() {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            }
+
+            // Dot clicks
+            dots.forEach((dot) => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'), 10);
+                    stopSlider();
+                    goToSlide(index);
+                    startSlider();
+                });
+            });
+
+            // Pause on hover
+            const hero = document.getElementById('hero');
+            hero.addEventListener('mouseenter', stopSlider);
+            hero.addEventListener('mouseleave', startSlider);
+
+            // Init
+            goToSlide(0);
+            startSlider();
+
+            // ----- DARK MODE TOGGLE -----
+            const toggleBtn = document.getElementById('themeToggle');
+            const ball = toggleBtn.querySelector('.toggle-ball');
+            const html = document.documentElement;
+
+            // Check saved preference
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                toggleBtn.classList.add('dark');
+                ball.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                ball.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+
+            toggleBtn.addEventListener('click', function() {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    toggleBtn.classList.remove('dark');
+                    ball.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    toggleBtn.classList.add('dark');
+                    ball.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // ----- MOBILE MENU -----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu on link click (optional)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ----- SCROLL ANIMATIONS (Intersection Observer) -----
+            const fadeElements = document.querySelectorAll('.fade-up');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+        })();
+    </script>
+
+</body>
+</html>

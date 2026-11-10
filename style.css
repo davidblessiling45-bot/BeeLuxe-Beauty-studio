@@ -1,0 +1,563 @@
+/*==================================================
+    BeeLuxe & Beauty
+    Main Stylesheet
+    Author: David
+===================================================*/
+
+/*==============================
+    GOOGLE FONTS
+===============================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/*==============================
+    CSS RESET
+===============================*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#faf8f4;
+    color:#222;
+    overflow-x:hidden;
+    transition:.4s ease;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+input{
+    font-family:inherit;
+    outline:none;
+}
+
+/*==============================
+    COLORS
+===============================*/
+:root{
+
+    --primary:#C7A14A;
+    --primary-dark:#A8842F;
+
+    --cream:#FAF8F4;
+    --white:#ffffff;
+    --black:#222222;
+
+    --text:#555555;
+
+    --border:#ece6dc;
+
+    --shadow:0 10px 35px rgba(0,0,0,.08);
+
+    --radius:12px;
+
+    --transition:.35s ease;
+
+}
+
+/*==============================
+    DARK MODE
+===============================*/
+
+body.dark{
+
+    background:#121212;
+
+    color:#ffffff;
+
+}
+
+body.dark .navbar{
+
+    background:#181818;
+
+}
+
+body.dark .top-bar{
+
+    background:#222;
+
+}
+
+body.dark .nav-links a{
+
+    color:#f1f1f1;
+
+}
+
+body.dark .btn{
+
+    color:#fff;
+
+}
+
+body.dark .hero{
+
+    background:#181818;
+
+}
+
+/*==============================
+    LOADER
+===============================*/
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.spinner{
+
+    width:60px;
+
+    height:60px;
+
+    border:5px solid #eee;
+
+    border-top:5px solid var(--primary);
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*==============================
+    TOP BAR
+===============================*/
+
+.top-bar{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:12px;
+
+    font-size:.9rem;
+
+    letter-spacing:.5px;
+
+}
+
+/*==============================
+    HEADER
+===============================*/
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    background:#fff;
+
+    box-shadow:0 2px 20px rgba(0,0,0,.04);
+
+    z-index:1000;
+
+    transition:.4s;
+
+}
+
+.navbar{
+
+    width:90%;
+
+    margin:auto;
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+/*==============================
+    LOGO
+===============================*/
+
+.logo a{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--black);
+
+    font-family:'Playfair Display',serif;
+
+}
+
+.logo span{
+
+    color:var(--primary);
+
+}
+
+/*==============================
+    NAVIGATION
+===============================*/
+
+.nav-links{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    color:#333;
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+    position:relative;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    bottom:-8px;
+
+    left:0;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+/*==============================
+    NAV ICONS
+===============================*/
+
+.nav-icons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.nav-icons i{
+
+    font-size:1.1rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.nav-icons i:hover{
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+#theme-toggle{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    transition:.3s;
+
+}
+
+#theme-toggle:hover{
+
+    transform:rotate(180deg);
+
+}
+
+.menu-btn{
+
+    display:none;
+
+}
+
+/*==============================
+    BUTTONS
+===============================*/
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:15px 38px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border-radius:50px;
+
+    transition:.35s;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+.btn:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(199,161,74,.4);
+
+}
+
+/*==============================
+    HERO
+===============================*/
+
+.hero{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:90vh;
+
+    overflow:hidden;
+
+    background:var(--cream);
+
+}
+
+.slide{
+
+    display:none;
+
+    width:90%;
+
+    margin:auto;
+
+    min-height:90vh;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:60px;
+
+}
+
+.slide.active{
+
+    display:flex;
+
+    animation:fade 1s;
+
+}
+
+.hero-content{
+
+    flex:1;
+
+}
+
+.hero-content h1{
+
+    font-size:4rem;
+
+    line-height:1.2;
+
+    font-family:'Playfair Display',serif;
+
+    margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+    font-size:1.1rem;
+
+    color:var(--text);
+
+    line-height:1.8;
+
+    max-width:500px;
+
+}
+
+.hero-image{
+
+    flex:1;
+
+}
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:auto;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/*==============================
+    ANIMATION
+===============================*/
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==============================
+    SECTION TITLE
+===============================*/
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title h2{
+
+    font-size:2.5rem;
+
+    font-family:'Playfair Display',serif;
+
+}
+
+.section-title p{
+
+    color:var(--text);
+
+    margin-top:10px;
+
+}
+
+/*==============================
+    CONTAINER
+===============================*/
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+}
